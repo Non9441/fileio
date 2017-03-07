@@ -3,7 +3,6 @@ package fileio;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -141,7 +140,7 @@ public class FileCopyTask implements Runnable {
 	 */
 	public static void main(String[] args) {
 		final String inputFilename = "Big-Alice-in-Wonderland.txt";
-		final int size = 1024 * 64;
+		final int size = 1000;
 
 		// Define a FileUtil task to copy a file byte by byte.
 		// This is an anonymous class that extends FileUtilTimer.
@@ -178,16 +177,17 @@ public class FileCopyTask implements Runnable {
 			public void run() {
 				FileUtil.charCopy(in, out, size);
 			}
-
-			public String toSting() {
+			
+			public String toString() {
 				return ("Copy a file using a char array of size " + size);
 			}
 		};
 
 		TaskTimer timer = new TaskTimer();
-		timer.measureAndPrint(task1); // wasn't that easy?
+		timer.measureAndPrint(task1);
 		timer.measureAndPrint(task2);
 		timer.measureAndPrint(task3);
+		timer.measureAndPrint(task4);
 
 		// TODO Define tasks for the other copy tests you need.
 
